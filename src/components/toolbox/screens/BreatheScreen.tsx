@@ -88,11 +88,18 @@ export function BreatheScreen() {
         </div>
       </div>
 
-      <div className="relative z-10 flex gap-2 px-5">
-        <Chip label="Box breath" active />
-        <Chip label="4-7-8" />
-        <Chip label="Butterfly tap" />
-        <Chip label="Ocean" />
+      <div className="relative z-10 w-full px-4">
+        <p className="mb-2 text-center text-[10px] uppercase tracking-[0.3em]" style={{ color: "var(--mist)" }}>
+          Pocket techniques
+        </p>
+        <div className="flex gap-2 overflow-x-auto pb-1 [&::-webkit-scrollbar]:hidden" style={{ scrollbarWidth: "none" }}>
+          <Chip label="🕯️ Birthday Candles" active />
+          <Chip label="🎈 Balloon Belly" />
+          <Chip label="🪼 Wiggly Jellyfish" />
+          <Chip label="✋ 5-4-3-2-1" />
+          <Chip label="🫂 Heart Hug" />
+          <Chip label="🍋 Lemon Squeeze" />
+        </div>
       </div>
     </div>
   );

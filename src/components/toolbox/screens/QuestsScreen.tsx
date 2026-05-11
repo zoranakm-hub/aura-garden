@@ -140,6 +140,79 @@ export function QuestsScreen() {
             </div>
           ))}
         </div>
+
+        {/* Happy chemicals */}
+        <div className="mt-6">
+          <div className="mb-2 flex items-baseline justify-between">
+            <h3 className="font-display text-xl">Happy chemicals lab</h3>
+            <span className="text-xs" style={{ color: "var(--muted-foreground)" }}>
+              tiny everyday recipes
+            </span>
+          </div>
+          <div className="grid grid-cols-2 gap-3">
+            {[
+              { name: "Dopamine", tag: "reward", grad: "linear-gradient(135deg, oklch(0.75 0.13 60), oklch(0.6 0.14 40))", tips: ["celebrate small wins", "finish one thing", "favorite song"] },
+              { name: "Oxytocin", tag: "love", grad: "linear-gradient(135deg, oklch(0.7 0.11 20), oklch(0.55 0.1 350))", tips: ["hug 20 seconds", "text a friend", "pet a dog"] },
+              { name: "Serotonin", tag: "calm", grad: "linear-gradient(135deg, oklch(0.75 0.1 145), oklch(0.55 0.08 180))", tips: ["sunlight", "walk outside", "gratitude"] },
+              { name: "Endorphin", tag: "relief", grad: "linear-gradient(135deg, oklch(0.65 0.13 290), oklch(0.5 0.1 250))", tips: ["laugh", "stretch", "dance it out"] },
+            ].map((c) => (
+              <div
+                key={c.name}
+                className="relative overflow-hidden rounded-2xl p-3"
+                style={{ background: c.grad }}
+              >
+                <div className="absolute -right-3 -top-3 h-16 w-16 rounded-full bg-white/20 blur-2xl" />
+                <p className="relative font-display text-base" style={{ color: "oklch(0.18 0.03 240)" }}>
+                  {c.name}
+                </p>
+                <p className="relative text-[10px] uppercase tracking-widest" style={{ color: "oklch(0.25 0.04 250)" }}>
+                  the {c.tag}
+                </p>
+                <ul className="relative mt-2 space-y-0.5">
+                  {c.tips.map((t) => (
+                    <li key={t} className="text-[11px]" style={{ color: "oklch(0.22 0.03 240)" }}>
+                      · {t}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {/* Energy givers vs takers */}
+        <div className="mt-6 glass-strong rounded-3xl p-4">
+          <h3 className="font-display text-xl">What's charging you today?</h3>
+          <p className="mt-0.5 text-xs" style={{ color: "var(--muted-foreground)" }}>
+            Notice without judgment.
+          </p>
+          <div className="mt-3 grid grid-cols-2 gap-3">
+            <div className="rounded-2xl p-3" style={{ background: "oklch(0.55 0.13 25 / 0.18)", border: "1px solid oklch(0.65 0.14 25 / 0.4)" }}>
+              <p className="text-[10px] uppercase tracking-widest" style={{ color: "oklch(0.78 0.13 30)" }}>
+                Energy takers
+              </p>
+              <div className="mt-2 flex flex-wrap gap-1">
+                {["scrolling", "no sleep", "clutter", "the news", "comparison"].map((t) => (
+                  <span key={t} className="rounded-full bg-black/20 px-2 py-0.5 text-[10px]">
+                    {t}
+                  </span>
+                ))}
+              </div>
+            </div>
+            <div className="rounded-2xl p-3" style={{ background: "oklch(0.55 0.1 155 / 0.18)", border: "1px solid oklch(0.7 0.1 155 / 0.4)" }}>
+              <p className="text-[10px] uppercase tracking-widest" style={{ color: "var(--sage)" }}>
+                Energy givers
+              </p>
+              <div className="mt-2 flex flex-wrap gap-1">
+                {["nature", "music", "rest", "movement", "water", "a real friend"].map((t) => (
+                  <span key={t} className="rounded-full bg-black/20 px-2 py-0.5 text-[10px]">
+                    {t}
+                  </span>
+                ))}
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   );
