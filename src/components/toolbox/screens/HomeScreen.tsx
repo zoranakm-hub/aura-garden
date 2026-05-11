@@ -54,26 +54,80 @@ export function HomeScreen() {
         </div>
       </div>
 
-      {/* Nervous system meter */}
+      {/* Battery check-in */}
       <div className="mt-4 px-5">
         <div className="glass rounded-3xl p-4">
-          <div className="flex items-center justify-between">
-            <div>
+          <div className="flex items-start justify-between gap-3">
+            <div className="flex-1">
               <p className="text-[11px] uppercase tracking-widest" style={{ color: "var(--mist)" }}>
-                Nervous system
+                Inner battery
               </p>
-              <p className="mt-1 font-display text-lg">Gently settling</p>
+              <p className="mt-1 font-display text-lg leading-tight">Content · 62% charged</p>
+              <p className="mt-0.5 text-xs" style={{ color: "var(--muted-foreground)" }}>
+                Tap a level to check in with yourself
+              </p>
             </div>
-            <div className="relative h-14 w-14">
-              <div className="absolute inset-0 rounded-full animate-breathe" style={{ background: "var(--gradient-sage)" }} />
-              <Waves className="absolute inset-0 m-auto h-6 w-6" style={{ color: "var(--primary-foreground)" }} />
+            {/* Battery shape */}
+            <div className="relative h-16 w-9 shrink-0 rounded-md border-2" style={{ borderColor: "oklch(1 0 0 / 0.25)" }}>
+              <div className="absolute -top-1 left-1/2 h-1 w-3 -translate-x-1/2 rounded-sm" style={{ background: "oklch(1 0 0 / 0.25)" }} />
+              <div className="absolute inset-x-0.5 bottom-0.5 flex flex-col-reverse gap-0.5 overflow-hidden rounded">
+                {["var(--gradient-sage)", "var(--gradient-warmth)", "var(--gradient-gold)"].map((g, i) => (
+                  <div key={i} className="h-2.5 rounded-sm animate-pulse-glow" style={{ background: g, animationDelay: `${i * 0.3}s` }} />
+                ))}
+              </div>
             </div>
           </div>
-          <div className="mt-3 h-1.5 w-full overflow-hidden rounded-full bg-white/10">
-            <div
-              className="h-full rounded-full"
-              style={{ width: "62%", background: "var(--gradient-aurora)" }}
-            />
+          {/* Battery levels */}
+          <div className="mt-3 space-y-1">
+            {[
+              { label: "Joyful", color: "oklch(0.75 0.1 145)" },
+              { label: "Excited", color: "oklch(0.82 0.11 80)" },
+              { label: "Content", color: "oklch(0.78 0.09 55)", active: true },
+              { label: "Frustrated", color: "oklch(0.65 0.14 25)" },
+              { label: "Sad", color: "oklch(0.65 0.07 240)" },
+              { label: "Worried", color: "oklch(0.65 0.09 290)" },
+            ].map((l) => (
+              <button
+                key={l.label}
+                className="flex w-full items-center gap-2 rounded-xl px-2.5 py-1.5 text-left transition-all"
+                style={{
+                  background: l.active ? `${l.color.replace(")", " / 0.25)")}` : "oklch(1 0 0 / 0.04)",
+                  border: `1px solid ${l.active ? l.color : "oklch(1 0 0 / 0.06)"}`,
+                  boxShadow: l.active ? `0 0 20px -4px ${l.color}` : "none",
+                }}
+              >
+                <span className="h-2 w-2 rounded-full" style={{ background: l.color, boxShadow: `0 0 8px ${l.color}` }} />
+                <span className="text-xs font-medium">{l.label}</span>
+                {l.active && (
+                  <span className="ml-auto text-[10px] uppercase tracking-wider" style={{ color: l.color }}>
+                    today
+                  </span>
+                )}
+              </button>
+            ))}
+          </div>
+        </div>
+      </div>
+
+      {/* Affirmation card */}
+      <div className="mt-4 px-5">
+        <div
+          className="relative overflow-hidden rounded-3xl p-5 shadow-soft"
+          style={{
+            background: "radial-gradient(120% 100% at 0% 0%, oklch(0.6 0.1 320 / 0.4), transparent 60%), linear-gradient(135deg, oklch(0.35 0.05 270), oklch(0.3 0.06 240))",
+            border: "1px solid oklch(1 0 0 / 0.12)",
+          }}
+        >
+          <div className="absolute -right-6 -bottom-6 h-32 w-32 rounded-full opacity-40 blur-3xl" style={{ background: "var(--gradient-gold)" }} />
+          <div className="relative flex items-start gap-3">
+            <span className="font-display text-4xl leading-none" style={{ color: "var(--gold)" }}>"</span>
+            <p className="font-display text-lg leading-snug" style={{ color: "var(--foreground)" }}>
+              I am not everything I want to be yet — but I am a lot of things I wanted to be two years ago.
+            </p>
+          </div>
+          <div className="relative mt-3 flex items-center justify-between text-[11px]" style={{ color: "var(--mist)" }}>
+            <span>· daily reminder ·</span>
+            <button className="rounded-full bg-white/10 px-2.5 py-1">Save 💛</button>
           </div>
         </div>
       </div>
