@@ -1,4 +1,4 @@
-import { Cloud, Moon, Sun, Sparkles, TreePine, Waves } from "lucide-react";
+import { Cloud, Moon, Sun, Sparkles, TreePine } from "lucide-react";
 import { ParticleField } from "../ParticleField";
 
 export function HomeScreen() {
